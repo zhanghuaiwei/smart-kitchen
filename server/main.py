@@ -1,6 +1,6 @@
 """AI私厨管家 服务端入口
 
-启动: cd server && uvicorn main:app --reload --port 8000
+启动: cd server && uv run python main.py
 接口文档: http://localhost:8000/docs
 """
 from fastapi import FastAPI, File, HTTPException, UploadFile
