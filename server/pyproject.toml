@@ -1,0 +1,17 @@
+[project]
+name = "smart-kitchen-server"
+version = "0.1.0"
+description = "AI私厨管家服务端 - 基于LangChain和多模态模型的食谱推荐服务"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "python-dotenv>=1.0",
+    "langchain>=0.2",
+    "langchain-openai>=0.1",
+    "langchain-tavily>=0.1",
+    "pillow>=10.0",
+]

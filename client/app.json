@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "AI私厨管家",
+    "slug": "smart-kitchen",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon_raw.jpg",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FAF8F5",
+    "splash": {
+      "backgroundColor": "#E86A33"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "拍摄食材照片用于识别",
+        "NSPhotoLibraryUsageDescription": "访问相册选择食材照片"
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE"]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "拍摄食材照片用于识别",
+          "photosPermission": "访问相册选择食材照片"
+        }
+      ]
+    ]
+  }
+}
