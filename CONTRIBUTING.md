@@ -17,8 +17,8 @@ uv run uvicorn main:app --reload --port 8000
 
 # 客户端
 cd ../client
-npm install
-npx expo start
+pnpm install
+pnpm start
 ```
 
 ## 开发约定
@@ -62,7 +62,7 @@ docs: 补充架构图
 1. Fork 仓库并创建分支：`git checkout -b feat/your-feature`
 2. 提交改动，确保：
    - 服务端 `uv run python -c "import main"` 可正常导入
-   - 客户端 `npx tsc --noEmit` 零错误
+   - 客户端 `pnpm typecheck` 零错误
 3. 发起 Pull Request，描述改动与动机
 
 ## 项目结构

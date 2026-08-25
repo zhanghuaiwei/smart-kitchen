@@ -20,7 +20,7 @@
 - **服务端**：Python + FastAPI + LangChain
 - **多模态模型**：OpenAI 兼容协议，可对接 OpenAI / 通义千问 / 豆包 / DeepSeek / GLM 等
 - **联网搜索**：Tavily（食谱检索）
-- **包管理**：uv（服务端）/ npm（客户端）
+- **包管理**：uv（服务端）/ pnpm（客户端）
 
 ## 📁 项目结构
 
@@ -93,10 +93,10 @@ uv run uvicorn main:app --reload --port 8000
 cd client
 
 # 安装依赖
-npm install
+pnpm install
 
 # 启动 Expo 开发服务器
-npx expo start
+pnpm start
 ```
 
 按终端提示：
