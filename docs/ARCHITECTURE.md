@@ -26,6 +26,14 @@
 
 ## 客户端架构
 
+### 入口与打包
+
+- **入口**：`package.json` 的 `main` 指向自定义入口 `index.ts`（调用
+  `registerRootComponent(App)`），而非默认的 `node_modules/expo/AppEntry.js`。
+  原因：pnpm 符号链接结构下，`AppEntry.js` 内部的跨包相对路径 `../../App`
+  无法被 Metro 解析（详见 README 故障排查）。
+- **Metro 配置**：`metro.config.js` 开启 `unstable_enableSymlinks`，兼容 pnpm 目录结构。
+
 ### 数据流
 
 1. **用户输入**：`InputBar` 采集文本 + 图片（base64）

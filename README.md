@@ -151,6 +151,52 @@ pnpm start
 
 对话编排（[chat_service.py](server/services/chat_service.py)）已完成，无需改动。
 
+## 🔧 故障排查
+
+<details>
+<summary><b>浏览器打开 Web 端白屏 / 500 错误</b></summary>
+
+现象：`GET .../AppEntry.bundle?platform=web... 500`，浏览器控制台提示 MIME type
+`application/json` 不可执行。
+
+排查步骤：
+1. **直接访问报错 URL** 查看 JSON 里的真实错误信息（Metro 把构建错误以 JSON 返回）
+2. 缺 `react-dom` / `react-native-web` → `pnpm add react-dom@18.3.1 "react-native-web@~0.19.13"`
+3. 修改入口 / Metro 配置后必须重启并清缓存：`pnpm start --clear`
+
+</details>
+
+<details>
+<summary><b>pnpm 环境下模块解析失败（Unable to resolve module）</b></summary>
+
+本项目使用 **pnpm**，其符号链接目录结构（`.pnpm/`）与 Metro 默认行为不兼容，
+已通过两处配置规避（勿删除）：
+
+- `package.json` 的 `main` 指向自定义入口 `index.ts`，而非
+  `node_modules/expo/AppEntry.js`（后者以 `../../App` 跨包相对路径引用根组件，
+  在 pnpm 结构下解析失败）
+- `metro.config.js` 开启了 `unstable_enableSymlinks`
+
+若仍遇到 `Unable to resolve module @babel/runtime` 之类错误，是 pnpm 严格模式下
+传递依赖不可达，显式安装即可：`pnpm add @babel/runtime@^7.26`。
+
+</details>
+
+<details>
+<summary><b>端口被占用</b></summary>
+
+Expo 默认使用 8081，被占用时自动 fallback 到 8082（终端会提示）。
+排查与释放：
+
+```bash
+lsof -i :8081                        # 查看占用进程
+lsof -ti :8081 | xargs kill          # 释放端口 (确认进程可杀)
+```
+
+服务端默认 8000 端口同理。
+
+</details>
+
 ## 📄 文档
 
 - [架构设计](docs/ARCHITECTURE.md) — 系统分层、数据流、核心流程
